@@ -1,0 +1,47 @@
+{
+  "name": "md-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "createRouter": "vue-cli-service createRouter",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuetify": "^2.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "@xohu/vue-cli-plugin-create-router": "^1.2.3",
+    "acorn": "^6.0.0",
+    "axios": "^0.19.0",
+    "eslint": "^5.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^7.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "mockjs": "^1.0.1-beta3",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-url": "^8.0.0",
+    "sass": "^1.22.9",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-vuetify": "^0.6.1",
+    "vue-cli-plugin-vuex-module-generator": "^0.1.1",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2",
+    "vuex": "^3.1.1"
+  }
+}
