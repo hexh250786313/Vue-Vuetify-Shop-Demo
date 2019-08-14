@@ -1,104 +1,154 @@
-<template lang="html">
-  <div class="login">
-    <v-header>
-      <h1 slot="title">
-        登录页
-      </h1>
-    </v-header>
-    <section>
-      <mt-field
-        v-model="account"
-        label="账号"
-        placeholder="请输入账号"
-        type="text"
-        :readonly="!toggle"
-        :disable-clear="!toggle"
-      />
-      <mt-field
-        v-model="password"
-        label="密码"
-        placeholder="请输入密码"
-        type="password"
-        :readonly="!toggle"
-        :disable-clear="!toggle"
-      />
-      <p class="tip">
-        Tip : 账号密码随便输
-      </p>
-    </section>
-    <mt-button
-      v-if="toggle"
-      plain
-      size="large"
-      @click="login"
-    >
+<template>
+  <v-app id="login-page">
+    <v-avatar>
+      <img
+        src="https://raw.githubusercontent.com/hexh250786313/amai_mayoi.github.io/master/img/tama.ico"
+        alt="Vue"
+      >
+    </v-avatar>
+    <h1 class="headline">
       登录
-    </mt-button>
-    <mt-button
-      v-else
-      plain
-      size="large"
-      @click="logout"
+    </h1>
+    <span class="subtitle">
+      {{ tipText }}
+    </span>
+
+    <v-window v-model="step">
+      <v-window-item :value="1">
+        <!--这个 v-sheet 是用来限制 input 的长宽的-->
+        <v-sheet>
+          <v-text-field
+            v-model="model"
+            outlined
+            label="电子邮箱或者电话号码"
+            hint="请输入 &quot;admin@admin.com&quot;"
+          />
+        </v-sheet>
+        <p>忘记了电子邮件地址?</p>
+      </v-window-item>
+
+      <v-window-item :value="2">
+        <v-sheet>
+          <v-text-field
+            v-model="model"
+            outlined
+            label="输入您的密码"
+            hint="请输入 &quot;admin&quot;"
+          />
+        </v-sheet>
+        <p>忘记了电子邮件地址?</p>
+      </v-window-item>
+
+      <v-row no-gutters>
+        <v-col>
+          <v-btn
+            id="register"
+            color="#fff"
+            depressed
+            type="text"
+          >
+            创建账号
+          </v-btn>
+        </v-col>
+        <v-col>
+          <v-btn
+            id="input-password"
+            color="primary"
+            depressed
+            @click="acountLoad"
+          >
+            下一步
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-window>
+
+    <v-overlay
+      color="#fff"
+      opacity="0.5"
+      :value="overlay"
     >
-      退出登录
-    </mt-button>
-  </div>
+      <v-progress-linear
+        indeterminate
+        absolute
+        color="#1565C0"
+        light
+      />
+    </v-overlay>
+  </v-app>
 </template>
 
 <script>
-import Header from '@/common/_header.vue'
-import { Toast } from 'mint-ui'
+import { setTimeout } from 'timers'
+
 export default {
-  components: {
-    'v-header': Header
-  },
-  data () {
-    return {
-      account: '',
-      password: '',
-      toggle: !this.$store.state.login.token
+  data: () => ({
+    overlay: false,
+    step: 1,
+    model: ''
+  }),
+  computed: {
+    tipText () {
+      switch (this.step) {
+        case 1: return '使用您的登录账号'
+        case 2: return '要继续操作，请首先验证登录者是本人'
+        default: return '使用您的登录账号'
+      }
     }
   },
   methods: {
-    // 登录按钮
-    login () {
-      if (this.account !== '' && this.password !== '') {
-        Toast('登录成功,存储token,跳转网页')
-        this.toggle = false
-        this.$store.commit('CHANGE_TOKEN', 1)
-      } else {
-        Toast('账号密码不能为空')
-      }
-
+    acountLoad: function () {
+      this.overlay = true
       setTimeout(() => {
-        this.$router.replace({
-          path: 'user'
-        })
-      }, 1000)
-      // 登录成
-    },
-
-    // 退出登录按钮
-    logout () {
-      Toast('退出登录成功,清除token')
-      this.$store.commit('CHANGE_TOKEN', 0)
-      this.toggle = true
-      this.account = ''
-      this.password = ''
+        this.overlay = false
+        this.step++
+      }, 1500)
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.login {
-  > section {
-    .tip {
-      padding: 6vw 3vw;
-      color: rgb(224, 145, 71);
-      letter-spacing: 2px;
-      font-size: 16px;
-    }
-  }
-}
+<style lang="sass" scoped>
+
+  #login-page
+    background: #FFF
+
+  #login-page ::v-deep .v-application--wrap
+    align-items: center
+    margin: 3vh
+    min-height: 94vh
+
+  #login-page h1
+    margin-top: 16px
+
+  #login-page .subtitle
+    margin-top: 8px
+
+  #login-page ::v-deep .v-input__control
+    margin-top: 30px
+
+  #login-page .v-input
+    width: 88vw
+
+  #login-page #register
+    color: #1565C0
+    padding-left: 6px
+    padding-right: 6px
+    margin-right: 20vw
+
+  #login-page #input-password
+    margin-left: 21vw
+
+  #login-page p
+    margin-bottom: 50px
+    margin-right: 50vw
+    color: #1565C0
+
+  #login-page ::v-deep .v-overlay
+    justify-content: flex-start
+    align-items: stretch
+
+  #login-page ::v-deep .v-overlay__content
+    position: static
+
 </style>
