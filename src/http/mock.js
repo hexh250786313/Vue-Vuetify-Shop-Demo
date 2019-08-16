@@ -8,6 +8,10 @@ var datas = Mock.mock('http://api.com/datas', {
     'imgPath': Random.image('200x200', '#dec4e0', '#333', 'png', ''),
     'price|500-700': 1,
     'onsale|300-499': 1
+  }],
+  'accountInfo|2': [{
+    'account|+1': ['admin@admin.admin', 'qwerty'],
+    'password|+1': ['adimin', 'qwerty']
   }]
 })
 
