@@ -25,10 +25,10 @@
         <v-sheet>
           <v-text-field
             v-model="account"
-            :rules="[() => !!account || '请输入账号 &quot;admin@admin.com&quot;']"
+            :rules="[() => !!account || '请输入账号 &quot;admin@admin.admin&quot;', () => accountFlag || '无此账号，请注册账号或输入账号 &quot;admin@admin.admin&quot;']"
             outlined
             label="电子邮箱或者电话号码"
-            hint="请输入 &quot;admin@admin.com&quot;"
+            hint="请输入 &quot;admin@admin.admin&quot;"
           />
         </v-sheet>
         <p>忘记了电子邮件地址?</p>
@@ -63,7 +63,7 @@
         <v-sheet>
           <v-text-field
             v-model="password"
-            :rules="[() => !!account || '请输入密码 &quot;admin&quot']"
+            :rules="[() => !!password || '请输入密码 &quot;admin&quot', () => passwordFlag || '密码错误，请输入 &quot;admin&quot;']"
             outlined
             label="输入您的密码"
             hint="请输入 &quot;admin&quot;"
@@ -115,6 +115,20 @@
         light
       />
     </v-overlay>
+
+    <!--提示信息-->
+    <v-snackbar
+      v-model="snackbar"
+    >
+      输入栏不能为空
+      <v-btn
+        color="#1565C0"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -124,13 +138,16 @@ import theData from '@/http/mock' // 模拟数据
 
 export default {
   data: () => ({
+    snackbar: false,
+    accountFlag: true,
+    passwordFlag: true,
     show: false,
     overlay: false,
     step: 1,
     account: '',
     password: '',
     list: [],
-    filteredAccount: []
+    theAccount: {}
   }),
   computed: {
     tipText () {
@@ -149,40 +166,84 @@ export default {
     }
   },
   methods: {
-    login: function () {
-
-    },
+    // 读取数据库的账号，并验证账号
     accountLoad: function () {
       if (this.account !== '') {
+        // 关闭弹出信息
+        this.snackbar = false
+
         // 请求拦截
         this.$api({
           method: 'post',
           url: '/datas'
         })
         // 拦截完毕
-          .then(function (response) {
-            console.log(response.data.accountInfo)
-            this.list = response.data.accountInfo.filter(function (item) {
-              return item.account === this.account
-            })
-            console.log(this.list)
+          .then(response => {
+            this.list = response.data.accountInfo
           })
         // 处理错误
           .catch(function (error) {
             alert(error)
           })
+
+        // 加载遮罩过渡动画
         this.overlay = true
+
+        // 配对账号
         setTimeout(() => {
-          if (this.list[0]) {
-            console.log(this.list[0].account)
+          this.theAccount = this.list.filter(item => {
+            return this.account === item.account
+          })[0]
+        }, 1000)
+
+        setTimeout(() => {
+          if (this.theAccount) {
             this.overlay = false
             this.step++
           } else {
+            this.accountFlag = false
+            // 就算变变为了 false，输入框不改变的话依然不会触发提示，因此放一个不被识别的转义字符来触发提示，这是回车键
+            this.account = this.account + '\r'
             this.overlay = false
+            // 0.5秒后恢复 accountFlag 的状态，否则后续每次输入都会是 false 状态导致不断提示
+            setTimeout(() => {
+              this.accountFlag = true
+            }, 500)
           }
         }, 1500)
       } else {
-        alert('输入账号')
+        this.snackbar = true
+      }
+    },
+
+    // 验证密码并跳转
+    login: function () {
+      if (this.password !== '') {
+        // 关闭弹出信息
+        this.snackbar = false
+
+        // 加载遮罩过渡动画
+        this.overlay = true
+        setTimeout(() => {
+          if (this.password === this.theAccount.password) {
+            this.$store.commit('CHANGE_TOKEN', 1)
+            console.log(this.$store.state.login.token)
+            // this.$router.push('/')
+            this.$router.go(-1) // 登录成功后，返回上次进入的页面；
+          } else {
+            this.passwordFlag = false
+            // 就算变变为了 false，输入框不改变的话依然不会触发提示，因此放一个不被识别的转义字符来触发提示，这是回车键
+            this.password = this.password + '\r'
+            this.overlay = false
+            // 0.5秒后恢复 passwordFlag 的状态，否则后续每次输入都会是 false 状态导致不断提示
+            setTimeout(() => {
+              this.passwordFlag = true
+            }, 500)
+            this.overlay = false
+          }
+        }, 1000)
+      } else {
+        this.snackbar = true
       }
     }
   }
@@ -230,6 +291,9 @@ export default {
     position: static
 
   #login-page .v-sheet
-    height: 120px
+    height: 125px
+
+  #login-page ::v-deep .v-snack__wrapper
+    min-width: 300px
 
 </style>

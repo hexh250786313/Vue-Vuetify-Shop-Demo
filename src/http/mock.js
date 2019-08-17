@@ -11,7 +11,7 @@ var datas = Mock.mock('http://api.com/datas', {
   }],
   'accountInfo|2': [{
     'account|+1': ['admin@admin.admin', 'qwerty'],
-    'password|+1': ['adimin', 'qwerty']
+    'password|+1': ['admin', 'qwerty']
   }]
 })
 

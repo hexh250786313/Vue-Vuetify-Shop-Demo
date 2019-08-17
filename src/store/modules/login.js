@@ -1,4 +1,4 @@
-// import Util from '../../util/common'
+import Util from '../../util/common'
 import * as types from '../types'
 
 const state = {
