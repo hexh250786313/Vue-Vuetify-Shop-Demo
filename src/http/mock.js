@@ -10,8 +10,9 @@ var datas = Mock.mock('http://api.com/datas', {
     'onsale|300-499': 1
   }],
   'accountInfo|2': [{
-    'account|+1': ['admin@admin.admin', 'qwerty'],
-    'password|+1': ['admin', 'qwerty']
+    'session_id|+1': 1,
+    'account|+1': ['741', 'admin@admin.admin', 'qwerty'],
+    'password|+1': ['369', 'admin', 'qwerty']
   }]
 })
 

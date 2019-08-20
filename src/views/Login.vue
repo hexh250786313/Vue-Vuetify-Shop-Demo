@@ -25,10 +25,10 @@
         <v-sheet>
           <v-text-field
             v-model="account"
-            :rules="[() => !!account || '请输入账号 &quot;admin@admin.admin&quot;', () => accountFlag || '无此账号，请注册账号或输入账号 &quot;admin@admin.admin&quot;']"
+            :rules="[() => !!account || '请输入账号 &quot;741&quot;', () => accountFlag || '无此账号，请注册账号或输入账号 &quot;741&quot;']"
             outlined
             label="电子邮箱或者电话号码"
-            hint="请输入 &quot;admin@admin.admin&quot;"
+            hint="请输入 &quot;741&quot;"
           />
         </v-sheet>
         <p>忘记了电子邮件地址?</p>
@@ -63,10 +63,10 @@
         <v-sheet>
           <v-text-field
             v-model="password"
-            :rules="[() => !!password || '请输入密码 &quot;admin&quot', () => passwordFlag || '密码错误，请输入 &quot;admin&quot;']"
+            :rules="[() => !!password || '请输入密码 &quot;369&quot', () => passwordFlag || '密码错误，请输入 &quot;369&quot;']"
             outlined
             label="输入您的密码"
-            hint="请输入 &quot;admin&quot;"
+            hint="请输入 &quot;369&quot;"
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show ? 'text' : 'password'"
             @click:append="show = !show"
@@ -165,6 +165,13 @@ export default {
       }
     }
   },
+  beforeCreate: function () {
+    // 如果是从普通页过来的，意味着 sidebar 打开了，需要先关闭
+    this.$store.state.drawer = false
+    if (window.sessionStorage.getItem('token')) {
+      this.$router.push('/')
+    }
+  },
   methods: {
     // 读取数据库的账号，并验证账号
     accountLoad: function () {
@@ -205,6 +212,7 @@ export default {
             // 就算变变为了 false，输入框不改变的话依然不会触发提示，因此放一个不被识别的转义字符来触发提示，这是回车键
             this.account = this.account + '\r'
             this.overlay = false
+            console.log(document.referrer)
             // 0.5秒后恢复 accountFlag 的状态，否则后续每次输入都会是 false 状态导致不断提示
             setTimeout(() => {
               this.accountFlag = true
@@ -226,10 +234,14 @@ export default {
         this.overlay = true
         setTimeout(() => {
           if (this.password === this.theAccount.password) {
-            this.$store.commit('CHANGE_TOKEN', 1)
-            console.log(this.$store.state.login.token)
-            // this.$router.push('/')
-            this.$router.go(-1) // 登录成功后，返回上次进入的页面；
+            // 这个是保存登录状态，session_id 表示储存状态（这是个自定义的所有账号特有的主键），SET_USER 表示储存账号
+            this.$store.commit('CHANGE_TOKEN', this.theAccount.session_id)
+            this.$store.commit('SET_USER', this.theAccount.account)
+            if (window.history.length <= 1) {
+              this.$router.push('/')
+            } else {
+              this.$router.go(-1) // 登录成功后，返回上次进入的页面；
+            }
           } else {
             this.passwordFlag = false
             // 就算变变为了 false，输入框不改变的话依然不会触发提示，因此放一个不被识别的转义字符来触发提示，这是回车键

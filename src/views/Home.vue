@@ -103,11 +103,14 @@
 </template>
 
 <script>
-import Topbar from '@/components/topbar.vue'
+import Topbar from '@/components/home/topbar.vue'
 
 export default {
   components: {
     'v-topbar': Topbar
-  }
+  },
+  data: () => ({
+    overlay: false
+  })
 }
 </script>
