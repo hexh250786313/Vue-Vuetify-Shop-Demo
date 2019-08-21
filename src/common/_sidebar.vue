@@ -113,7 +113,13 @@ export default {
           this.$store.commit('CHANGE_TOKEN', '')
           this.$store.commit('SET_USER', '')
           this.$store.state.loading = false
+
+          // 关闭 sidebar
           this.$store.state.drawer = false
+
+          // 提示信息
+          this.$store.state.tipstext = '账号已登出'
+          this.$store.state.snackbar = true
         } else {
           this.$router.push('/login')
           this.$store.state.loading = false

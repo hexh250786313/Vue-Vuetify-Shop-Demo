@@ -8,7 +8,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     loading: false,
-    drawer: false
+    drawer: false,
+    snackbar: false,
+    tipstext: '输入栏不能为空'
   },
   modules: {
     login

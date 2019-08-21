@@ -115,20 +115,6 @@
         light
       />
     </v-overlay>
-
-    <!--提示信息-->
-    <v-snackbar
-      v-model="snackbar"
-    >
-      输入栏不能为空
-      <v-btn
-        color="#1565C0"
-        text
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
   </v-app>
 </template>
 
@@ -138,7 +124,6 @@ import theData from '@/http/mock' // 模拟数据
 
 export default {
   data: () => ({
-    snackbar: false,
     accountFlag: true,
     passwordFlag: true,
     show: false,
@@ -168,6 +153,7 @@ export default {
   beforeCreate: function () {
     // 如果是从普通页过来的，意味着 sidebar 打开了，需要先关闭
     this.$store.state.drawer = false
+
     if (window.sessionStorage.getItem('token')) {
       this.$router.push('/')
     }
@@ -177,7 +163,7 @@ export default {
     accountLoad: function () {
       if (this.account !== '') {
         // 关闭弹出信息
-        this.snackbar = false
+        this.$store.state.snackbar = false
 
         // 请求拦截
         this.$api({
@@ -212,7 +198,6 @@ export default {
             // 就算变变为了 false，输入框不改变的话依然不会触发提示，因此放一个不被识别的转义字符来触发提示，这是回车键
             this.account = this.account + '\r'
             this.overlay = false
-            console.log(document.referrer)
             // 0.5秒后恢复 accountFlag 的状态，否则后续每次输入都会是 false 状态导致不断提示
             setTimeout(() => {
               this.accountFlag = true
@@ -220,7 +205,8 @@ export default {
           }
         }, 1500)
       } else {
-        this.snackbar = true
+        this.$store.state.tipstext = '输入栏不能为空'
+        this.$store.state.snackbar = true
       }
     },
 
@@ -228,7 +214,7 @@ export default {
     login: function () {
       if (this.password !== '') {
         // 关闭弹出信息
-        this.snackbar = false
+        this.$store.state.snackbar = false
 
         // 加载遮罩过渡动画
         this.overlay = true
@@ -255,7 +241,8 @@ export default {
           }
         }, 1000)
       } else {
-        this.snackbar = true
+        this.$store.state.tipstext = '输入栏不能为空'
+        this.$store.state.snackbar = true
       }
     }
   }
