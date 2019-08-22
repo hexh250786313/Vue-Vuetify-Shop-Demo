@@ -9,7 +9,7 @@
       <v-app-bar-nav-icon @click.stop="changeDrawer" />
       <v-spacer />
 
-      <v-toolbar-title>Vue MD Shopping</v-toolbar-title>
+      <v-toolbar-title>Vue MD 商店</v-toolbar-title>
 
       <v-spacer />
 
@@ -20,18 +20,14 @@
         <v-searchbar />
       </template>
     </v-app-bar>
-
-    <v-sidebar />
   </div>
 </template>
 
 <script>
-import Sidebar from '@/common/_sidebar'
 import Searchbar from '@/components/home/searchbar'
 
 export default {
   components: {
-    'v-sidebar': Sidebar,
     'v-searchbar': Searchbar
   },
   methods: {

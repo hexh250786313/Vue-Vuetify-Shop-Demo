@@ -6,6 +6,7 @@
     temporary
     width="290"
     app
+    touchless
   >
     <v-list
       dense

@@ -19,6 +19,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  #_loading
-    z-index: 1001 !important
+#_loading
+  z-index: 1001 !important
 </style>

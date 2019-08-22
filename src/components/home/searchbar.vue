@@ -52,7 +52,7 @@ export default {
     overlay: false,
     model: '',
     barIcon: 'mdi-magnify',
-    textLabel: 'What are you looking for?',
+    textLabel: '要寻找什么商品？',
     flag: true,
     flag_2: true // 注释掉亦可
   }),
@@ -101,7 +101,7 @@ export default {
       if (type === 'click') {
         this.overlay = false
         this.barIcon = 'mdi-magnify'
-        this.textLabel = 'What are you looking for?'
+        this.textLabel = '要寻找什么商品？'
         this.$refs.input.blur()
       } else if (type === 'focus') {
         this.barIcon = 'mdi-arrow-left'
