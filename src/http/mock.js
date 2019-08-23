@@ -13,6 +13,11 @@ var datas = Mock.mock('http://api.com/datas', {
     'session_id|+1': 1,
     'account|+1': ['741', 'admin@admin.admin', 'qwerty'],
     'password|+1': ['369', 'admin', 'qwerty']
+  }],
+  'eventsInfo|1': [{
+    'title': '返校季',
+    'content': '学生用品、运动鞋、校园风服饰，把他们放到开学计划里吧。',
+    'picUrl': 'events'
   }]
 })
 

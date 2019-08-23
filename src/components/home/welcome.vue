@@ -20,13 +20,19 @@
               max-height="162"
               :src="getImgUrl(item.src)"
             >
-              <v-row
-                class="fill-height"
-                align="end"
-                justify="center"
+              <v-img
+                max-width="138"
+                max-height="162"
+                :src="require('@/assets/home/shadow.png')"
               >
-                {{ item.content }}
-              </v-row>
+                <v-row
+                  class="fill-height"
+                  align="end"
+                  justify="center"
+                >
+                  {{ item.content }}
+                </v-row>
+              </v-img>
             </v-img>
           </v-card>
         </li>
@@ -123,6 +129,7 @@ export default {
   background: #fff
   box-shadow: 0 2px 12px rgba(0,0,0,.1)
   -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.1)
+  -moz-box-shadow: 0 2px 12px rgba(0,0,0,.1)
 
 #welcome .outer
   width: 100%
