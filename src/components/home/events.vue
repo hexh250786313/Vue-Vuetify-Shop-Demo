@@ -3,16 +3,16 @@
     <v-sheet>
       <v-card>
         <v-img
-          :src="getImgUrl()"
+          :src="getImgUrl"
           alt="pic"
         >
           <v-card-text
             class="headline"
             width="100"
           >
-            {{ info.title }}
+            {{ events.title }}
             <p class="subtitle-1">
-              {{ info.content }}
+              {{ events.content }}
             </p>
           </v-card-text>
           <v-card-actions>
@@ -31,35 +31,13 @@
 </template>
 
 <script>
-import theData from '@/http/mock' // 模拟数据
-
 export default {
-  data: () => ({
-    info: {
-      title: '标题',
-      content: '内容...。',
-      picUrl: 'events_pre' // 预处理一张透明图片，防止初始化时会出错
-    }
-  }),
-  created: function () {
-    // 请求拦截
-    this.$api({
-      method: 'post',
-      url: '/datas'
-    })
-    // 拦截完毕
-      .then(response => {
-        this.info = response.data.eventsInfo
-      })
-    // 处理错误
-      .catch(function (error) {
-        alert(error)
-      })
-  },
-  methods: {
-    // 需要拼接，否则会有问题
-    getImgUrl () {
-      return require('@/assets/' + this.info.picUrl + '.png')
+  computed: {
+    events: function () {
+      return this.$store.state.home.events
+    },
+    getImgUrl: function () {
+      return require('@/assets/' + this.events.picUrl + '.png')
     }
   }
 }
