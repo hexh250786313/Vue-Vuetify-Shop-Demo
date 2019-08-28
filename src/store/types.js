@@ -13,5 +13,11 @@ export const SET_EVENTS = 'SET_EVENTS'
 // 设置 home 数据 flag
 export const SET_FLAG = 'SET_FLAG'
 
+// 设置 departments 数据 flag_dep
+export const SET_FLAG_DEP = 'SET_FLAG_DEP'
+
+// 设置 departments 数据 class
+export const SET_CLASS = 'SET_CLASS'
+
 // 全局loading状态，调用 axios 时会检测，比如会检测有没有上一次遗留的购物车讯息
 // export const SET_LOADING = 'SET_LOADING'

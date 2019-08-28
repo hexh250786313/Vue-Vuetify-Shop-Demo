@@ -17,11 +17,7 @@ const state = {
     if (ss) {
       return ss
     } else {
-      return {
-        title: '标题',
-        content: '内容...。',
-        picUrl: 'events_pre' // 预处理一张透明图片，防止初始化时会出错
-      }
+      return {} // 此处不用 null，而使用空对象
     }
   })()
 }

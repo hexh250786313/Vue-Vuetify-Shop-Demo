@@ -6,6 +6,7 @@ Vue.use(Router)
 const Home = resolve => require(['@/views/Home.vue'], resolve)
 const Login = resolve => require(['@/views/Login.vue'], resolve)
 const Cart = resolve => require(['@/views/Cart.vue'], resolve)
+const Departments = resolve => require(['@/views/Departments.vue'], resolve)
 
 export default new Router({
   mode: 'history',
@@ -25,5 +26,9 @@ export default new Router({
     meta: {
       requireAuth: true // 添加该字段，表示进入这个路由是需要登录才能进入的
     }
+  }, {
+    path: '/departments',
+    name: '专区',
+    component: Departments
   }]
 })

@@ -2,7 +2,6 @@
   <div id="top-bar">
     <v-app-bar
       class="topbar"
-      elevation="0"
       app
       extension-height="70"
     >
@@ -39,6 +38,12 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.topbar
+  box-shadow: 0 2px 12px rgba(0,0,0,.1) !important
+  -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.1) !important
+  -moz-box-shadow: 0 2px 12px rgba(0,0,0,.1) !important
+  z-index: 4
+
 .topbar .v-btn--flat,
 .topbar .v-app-bar__nav-icon
   margin-top: 3px
@@ -48,8 +53,5 @@ export default {
 
 .topbar .v-toolbar__title
   margin-left: 15px
-
-.topbar
-  z-index: 4
 
 </style>

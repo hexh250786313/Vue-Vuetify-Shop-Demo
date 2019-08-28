@@ -3,6 +3,7 @@
     <v-sheet>
       <v-card>
         <v-img
+          v-if="event"
           :src="getImgUrl"
           alt="pic"
         >
@@ -10,9 +11,9 @@
             class="headline"
             width="100"
           >
-            {{ events.title }}
+            {{ event.title }}
             <p class="subtitle-1">
-              {{ events.content }}
+              {{ event.content }}
             </p>
           </v-card-text>
           <v-card-actions>
@@ -32,12 +33,25 @@
 
 <script>
 export default {
+  props: {
+    events: {
+      type: Object,
+      default: function () {
+        return {
+          title: '标题',
+          content: '内容',
+          picUrl: 'events_pre'
+        }
+      }
+    }
+  },
   computed: {
-    events: function () {
-      return this.$store.state.home.events
+    event: function () {
+      const event = this.events
+      return event
     },
     getImgUrl: function () {
-      return require('@/assets/' + this.events.picUrl + '.png')
+      return require('@/assets/' + this.event.picUrl + '.png')
     }
   }
 }

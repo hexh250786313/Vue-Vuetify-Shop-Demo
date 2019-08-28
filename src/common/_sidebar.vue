@@ -68,16 +68,17 @@ export default {
       {
         icon: 'mdi-home',
         title: '首页',
-        url: ''
+        url: '/'
       }, {
         icon: 'mdi-widgets',
         title: '专区',
-        url: ''
+        url: '/departments'
       }, {
         icon: 'mdi-cart',
         title: '购物车',
         url: '/cart'
-      }, { icon: 'mdi-settings',
+      }, {
+        icon: 'mdi-settings',
         title: '设置',
         url: ''
       }
