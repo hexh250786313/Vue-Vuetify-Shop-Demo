@@ -12,7 +12,8 @@
       >
         <v-card
           v-for="(item, index) in goods.slice(4, 7)"
-          :key="index"
+          :key="index + 4"
+          @click="loadPage(goods[index + 4].id)"
         >
           <v-list-item three-line>
             <v-list-item-avatar
@@ -78,8 +79,18 @@ export default {
     }
   },
   methods: {
-    getImgUrl: function (url) {
-      return require(url)
+    loadPage (id) {
+      this.$store.state.loading = true
+      setTimeout(() => {
+        if (id === '') {
+          this.$store.state.drawer = false
+          this.$store.state.loading = false
+        } else {
+          this.$store.state.drawer = false
+          this.$router.push('/detail/' + id)
+          this.$store.state.loading = false
+        }
+      }, 1500)
     }
   }
 }

@@ -19,5 +19,11 @@ export const SET_FLAG_DEP = 'SET_FLAG_DEP'
 // 设置 departments 数据 class
 export const SET_CLASS = 'SET_CLASS'
 
+// 设置 departments 数据 class
+export const SET_SELECTED = 'SET_SELECTED'
+
+// 推入新的购物车项
+export const PUSH_CARTGOODS = 'PUSH_CARTGOODS'
+
 // 全局loading状态，调用 axios 时会检测，比如会检测有没有上一次遗留的购物车讯息
 // export const SET_LOADING = 'SET_LOADING'

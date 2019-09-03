@@ -3,13 +3,17 @@ var Random = Mock.Random
 var datas = Mock.mock('http://api.com/datas', {
   // 商品信息
   'goods|11': [{
-    'id|+1': 1,
+    'id|+1': 0,
     'title|+1': ['每日邮报', '早餐饼', 'Gardena 袜子', '美味水', '笔记本电脑', '电剃须刀', 'iphone', 'ipad', 'gear 3', '哈根达斯', '三菱笔'],
     'intro|+1': [Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3), Random.cparagraph(3)],
     'imgPath': Random.image('200x200', '#dec4e0', '#333', 'png', ''),
     'imgPath2': Random.image('125x125', '#FDECB7', '#333', 'png', ''),
+    'imgPath3': Random.image('411x250', '#FDECB7', '#333', 'png', ''),
     'price|500-700': 1,
-    'onsale|300-499': 1
+    'onsale|300-499': 1,
+    'count|600-3000': 1,
+    'rate|0-6': 1,
+    'type|11': [['Type A', 'Type B', 'Type C'], ['Type A', 'Type B', 'Type C', 'Type D'], ['Type A', 'Type B']]
   }],
   // 账户列表
   'accountInfo|2': [{

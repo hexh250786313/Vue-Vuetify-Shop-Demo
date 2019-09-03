@@ -10,8 +10,8 @@
         class="top"
       >
         <!------------------------- Part One -------------------------------->
-        <v-col>
-          <v-card>
+        <v-col v-if="goods">
+          <v-card @click="loadPage(goods[0].id)">
             <div>
               <v-avatar
                 color="white"
@@ -46,7 +46,7 @@
         </v-col>
         <!------------------------- Part Two -------------------------------->
         <v-col class="right">
-          <v-card>
+          <v-card @click="loadPage(goods[1].id)">
             <div>
               <v-avatar
                 color="white"
@@ -84,7 +84,7 @@
       >
         <!------------------------- Part Three -------------------------------->
         <v-col>
-          <v-card>
+          <v-card @click="loadPage(goods[2].id)">
             <div>
               <v-avatar
                 color="white"
@@ -116,7 +116,7 @@
         </v-col>
         <!------------------------- Part Four -------------------------------->
         <v-col class="right">
-          <v-card>
+          <v-card @click="loadPage(goods[3].id)">
             <div>
               <v-avatar
                 color="white"
@@ -170,6 +170,19 @@ export default {
   methods: {
     getImgUrl: function (url) {
       return require(url)
+    },
+    loadPage (id) {
+      this.$store.state.loading = true
+      setTimeout(() => {
+        if (id === '') {
+          this.$store.state.drawer = false
+          this.$store.state.loading = false
+        } else {
+          this.$store.state.drawer = false
+          this.$router.push('/detail/' + id)
+          this.$store.state.loading = false
+        }
+      }, 1500)
     }
   }
 }

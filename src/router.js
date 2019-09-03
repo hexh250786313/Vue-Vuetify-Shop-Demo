@@ -7,6 +7,7 @@ const Home = resolve => require(['@/views/Home.vue'], resolve)
 const Login = resolve => require(['@/views/Login.vue'], resolve)
 const Cart = resolve => require(['@/views/Cart.vue'], resolve)
 const Departments = resolve => require(['@/views/Departments.vue'], resolve)
+const Detail = resolve => require(['@/views/Detail.vue'], resolve)
 
 export default new Router({
   mode: 'history',
@@ -30,5 +31,13 @@ export default new Router({
     path: '/departments',
     name: '专区',
     component: Departments
-  }]
+  }, {
+    path: '/detail/:id',
+    name: '商品详情',
+    component: Detail
+  }],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { x: 0, y: 0 }
+  }
 })

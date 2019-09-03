@@ -123,8 +123,8 @@ export default {
           this.$store.state.tipstext = '账号已登出'
           this.$store.state.snackbar = true
         } else {
-          this.$router.push('/login')
           this.$store.state.loading = false
+          this.$router.push('/login')
         }
       }, 1500)
     },
@@ -136,8 +136,8 @@ export default {
           this.$store.state.loading = false
         } else {
           this.$store.state.drawer = false
-          this.$router.push(url)
           this.$store.state.loading = false
+          this.$router.push(url)
         }
       }, 1500)
     }

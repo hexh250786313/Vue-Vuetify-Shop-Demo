@@ -21,6 +21,7 @@
               large
               color="#1976D2"
               dark
+              @click="cart"
             >
               马上购买
             </v-btn>
@@ -52,6 +53,11 @@ export default {
     },
     getImgUrl: function () {
       return require('@/assets/' + this.event.picUrl + '.png')
+    }
+  },
+  methods: {
+    cart: function () {
+      this.$store.state.drawer2 = !this.$store.state.drawer2
     }
   }
 }
