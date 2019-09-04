@@ -8,10 +8,8 @@
         solo
         clearable
         :prepend-inner-icon="barIcon"
-        :append-icon="barIcon2"
         @click:prepend-inner="changeIcon('click')"
         @focus="changeIcon('focus')"
-        @click:append="toCart"
       >
         <template #label>
           <v-icon small>
@@ -19,9 +17,30 @@
           </v-icon>
           {{ textLabel }}
         </template>
+
+        <template #append>
+          <v-btn icon>
+            <v-badge
+              color="#1976D2"
+              overlap
+              class="align-self-center"
+            >
+              <template
+                v-slot:badge
+              >
+                <span
+                  v-if="cartcount"
+                  style="font-size:10px"
+                >{{ cartcount }}</span>
+              </template>
+              <v-icon @click="toCart">
+                {{ barIcon2 }}
+              </v-icon>
+            </v-badge>
+          </v-btn>
+        </template>
       </v-text-field>
     </v-sheet>
-
     <v-overlay
       color="#fff"
       opacity="1"
@@ -67,6 +86,11 @@ export default {
     flag: true,
     flag_2: true // 注释掉亦可
   }),
+  computed: {
+    cartcount: function () {
+      return this.$store.state.cart.cartgoods.length
+    }
+  },
   watch: {
     model: function (newValue) {
       if (this.flag) {
@@ -109,6 +133,12 @@ export default {
   },
   methods: {
     toCart () {
+      this.overlay = false
+      this.barIcon = 'mdi-menu'
+      this.barIcon2 = 'mdi-cart'
+      this.iconLabel = 'mdi-google'
+      this.textLabel = '要寻找什么商品？'
+      this.$refs.input.blur()
       this.$store.state.loading = true
       setTimeout(() => {
         this.$store.state.loading = false
@@ -144,6 +174,7 @@ export default {
   width: 100%
 
 #searchbar ::v-deep .v-input__slot
+  padding-right: 0
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
   -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
   -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
@@ -169,5 +200,10 @@ export default {
 
 #searchbar .v-list-item__icon
   margin-right: 20px
+
+#searchbar ::v-deep .v-badge__badge
+  min-width: 18px
+  width: 18px
+  height: 18px
 
 </style>

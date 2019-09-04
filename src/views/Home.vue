@@ -68,13 +68,14 @@ export default {
           // 放到 store 中
           this.$store.commit('SET_GOODS', response.data.goods)
           this.$store.commit('SET_EVENTS', response.data.events)
-          this.$store.commit('SET_FLAG', 1)
         })
       // 处理错误
         .catch(function (error) {
           alert(error)
         })
     }
+    this.$store.commit('SET_FLAG', 1)
+    this.$store.commit('SET_CARTGOODS')
   }
 }
 </script>

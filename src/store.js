@@ -15,6 +15,7 @@ export default new Vuex.Store({
     drawer: false,
     drawer2: false,
     snackbar: false,
+    dialog: false,
     tipstext: '输入栏不能为空'
   },
   modules: {

@@ -75,12 +75,13 @@
                       <v-avatar
                         style="border:2px solid #1976D2"
                         size="40"
+                        @click="cancel"
                       >
                         <v-icon color="#1976D2">
                           mdi-delete
                         </v-icon>
                       </v-avatar>
-                      <span style="color:#1976D2;font-size:0.9rem;font-weight:bold">撤销</span>
+                      <span style="color:#1976D2;font-size:0.9rem;font-weight:bold">移除</span>
                     </v-col>
                   </v-row>
                   <v-overlay
@@ -165,6 +166,18 @@ export default {
   methods: {
     close: function () {
       this.$store.state.drawer2 = !this.$store.state.drawer2
+    },
+    cancel: function () {
+      this.aniflag = true
+      setTimeout(() => {
+        // 加载 layout
+        this.$store.state.drawer2 = !this.$store.state.drawer2
+        // 移除
+        this.$store.commit('DELETE_CARTGOODS')
+        // tip
+        this.$store.state.tipstext = '已从购物车移除'
+        this.$store.state.snackbar = true
+      }, 2000)
     }
   }
 }

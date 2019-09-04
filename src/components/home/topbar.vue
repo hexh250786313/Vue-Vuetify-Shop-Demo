@@ -13,7 +13,19 @@
       <v-spacer />
 
       <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
+        <v-badge
+          color="#1976D2"
+          overlap
+          class="align-self-center"
+        >
+          <template v-slot:badge>
+            <span
+              v-if="cartcount"
+              style="font-size:10px"
+            >{{ cartcount }}</span>
+          </template>
+          <v-icon>mdi-cart</v-icon>
+        </v-badge>
       </v-btn>
       <template v-slot:extension>
         <v-searchbar />
@@ -28,6 +40,11 @@ import Searchbar from '@/components/home/searchbar'
 export default {
   components: {
     'v-searchbar': Searchbar
+  },
+  computed: {
+    cartcount: function () {
+      return this.$store.state.cart.cartgoods.length
+    }
   },
   methods: {
     changeDrawer: function () {
@@ -53,5 +70,10 @@ export default {
 
 .topbar .v-toolbar__title
   margin-left: 15px
+
+.topbar ::v-deep .v-badge__badge
+  min-width: 18px
+  width: 18px
+  height: 18px
 
 </style>

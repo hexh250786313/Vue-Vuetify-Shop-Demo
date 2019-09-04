@@ -29,16 +29,22 @@
           color="#1976D2"
           @click="pushToCart"
         >
-          Add to Cart
+          添加到购物车
         </v-btn>
       </v-col>
     </v-row>
     <v-divider />
+    <v-dialog :item="item" />
   </div>
 </template>
 
 <script>
+import Dialog from '@/common/_dialog'
+
 export default {
+  components: {
+    'v-dialog': Dialog
+  },
   props: {
     type: {
       type: Array,
@@ -53,6 +59,9 @@ export default {
       }
     }
   },
+  data: () => ({
+    item: {}
+  }),
   computed: {
     selection: {
       get: function () {
@@ -66,7 +75,8 @@ export default {
   },
   methods: {
     pushToCart: function () {
-      const item = {
+      this.$store.state.dialog = true
+      this.item = {
         id: this.goods.id,
         img: this.goods.imgPath,
         title: this.goods.title,
@@ -74,8 +84,6 @@ export default {
         type: this.type[this.selection],
         mount: 1
       }
-      this.$store.commit('PUSH_CARTGOODS', item)
-      this.$store.state.drawer2 = !this.$store.state.drawer2
     }
   }
 }
