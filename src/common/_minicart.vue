@@ -118,7 +118,7 @@
                   </v-card-text>
                 </v-card>
               </li>
-              <li>
+              <li style="list-style:none">
                 <div style="width:8px" />
               </li>
             </ul>

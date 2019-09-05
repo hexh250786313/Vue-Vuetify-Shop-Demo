@@ -1,5 +1,5 @@
 <template>
-  <div id="searchbar2">
+  <div id="searchbar3">
     <v-sheet>
       <v-text-field
         ref="input"
@@ -167,38 +167,38 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-#searchbar2
+#searchbar3
   width: 100%
 
-#searchbar2 ::v-deep .v-input__slot
+#searchbar3 ::v-deep .v-input__slot
   padding-right: 0
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
   -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
   -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
 
-#searchbar2 ::v-deep label,
-#searchbar2 ::v-deep input
+#searchbar3 ::v-deep label,
+#searchbar3 ::v-deep input
   margin-left: 12px
 
-#searchbar2 ::v-deep p
+#searchbar3 ::v-deep p
   color: white
 
-#searchbar2 ::v-deep .v-overlay
+#searchbar3 ::v-deep .v-overlay
   height: 100vh
   justify-content: flex-start
   align-items: stretch
   top: 65px
 
-#searchbar2 .v-list
+#searchbar3 .v-list
   width: 100vw
 
-#searchbar2 .v-list-item__title
+#searchbar3 .v-list-item__title
   font-size: 1rem
 
-#searchbar2 .v-list-item__icon
+#searchbar3 .v-list-item__icon
   margin-right: 20px
 
-#searchbar2 ::v-deep .v-badge__badge
+#searchbar3 ::v-deep .v-badge__badge
   min-width: 18px
   width: 18px
   height: 18px
