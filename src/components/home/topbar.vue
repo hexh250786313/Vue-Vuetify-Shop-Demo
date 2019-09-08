@@ -12,7 +12,10 @@
 
       <v-spacer />
 
-      <v-btn icon>
+      <v-btn
+        icon
+        @click="toCart"
+      >
         <v-badge
           color="#1976D2"
           overlap
@@ -49,6 +52,14 @@ export default {
   methods: {
     changeDrawer: function () {
       this.$store.state.drawer = !this.$store.state.drawer
+    },
+    toCart () {
+      this.overlay = false
+      this.$store.state.loading = true
+      setTimeout(() => {
+        this.$store.state.loading = false
+        this.$router.push('/cart')
+      }, 1500)
     }
   }
 }

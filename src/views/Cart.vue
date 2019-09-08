@@ -5,11 +5,14 @@
 
     <v-content>
       <v-container fluid>
-        <v-summary :subtotal="subtotal" />
+        <v-summary
+          :subtotal="subtotal"
+          :change="cartgoods[0]"
+        />
         <v-list :cartgoods="cartgoods" />
       </v-container>
     </v-content>
-    <v-bottombar />
+    <v-bottombar :subtotal="subtotal" />
   </v-app>
 </template>
 
@@ -33,11 +36,8 @@ export default {
       return this.$store.state.cart.cartgoods
     },
     subtotal: function () {
-      let sum = 0
-      for (var i = 0; i < this.cartgoods.length; i++) {
-        sum += this.cartgoods[i].mount * this.cartgoods[i].onsale
-      }
-      return sum
+      this.$store.commit('SET_SUM')
+      return this.$store.state.cart.sum
     }
   }
 }

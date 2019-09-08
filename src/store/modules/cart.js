@@ -20,7 +20,8 @@ const state = {
       ]
     }
   })(),
-  selectedgoods: JSON.parse(sessionStorage.getItem('selectedgoods'))
+  selectedgoods: JSON.parse(sessionStorage.getItem('selectedgoods')),
+  sum: JSON.parse(sessionStorage.getItem('sum'))
 }
 
 const mutations = {
@@ -61,6 +62,28 @@ const mutations = {
     let c = Array.from(new Set(a.filter(v => bSet.has(v))))
     window.sessionStorage.setItem('selectedgoods', JSON.stringify(c))
     state.selectedgoods = JSON.parse(sessionStorage.getItem('selectedgoods'))
+  },
+  [types.SET_SUM] (state) {
+    const a = state.selectedgoods.concat()
+    const b = state.cartgoods.concat()
+    let aSet = new Set(a)
+    // 有 ! 则取未被选中的，无 ! 则取选中的
+    let c = Array.from(new Set(b.filter(item => aSet.has(item.id))))
+    let s = 0
+    c.forEach(item => {
+      s += (item.mount * item.onsale)
+    })
+    state.sum = s
+    window.sessionStorage.setItem('sum', JSON.stringify(s))
+  },
+  [types.CHECKOUT] (state) {
+    const a = state.selectedgoods.concat()
+    const b = state.cartgoods.concat()
+    let aSet = new Set(a)
+    // 有 ! 则取未被选中的，无 ! 则取选中的
+    let c = Array.from(new Set(b.filter(item => !aSet.has(item.id))))
+    state.cartgoods = c
+    window.sessionStorage.setItem('cartgoods', JSON.stringify(c))
   }
 }
 

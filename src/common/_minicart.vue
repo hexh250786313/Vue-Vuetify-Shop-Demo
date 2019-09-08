@@ -29,7 +29,9 @@
             我的购物车
           </v-col>
           <v-col class="section3">
-            转至购物车
+            <div @click="toCart">
+              转至购物车
+            </div>
           </v-col>
         </v-row>
         <v-row style="height:21px">
@@ -164,6 +166,14 @@ export default {
     }, 2000)
   },
   methods: {
+    toCart: function () {
+      this.overlay = false
+      this.$store.state.loading = true
+      setTimeout(() => {
+        this.$store.state.loading = false
+        this.$router.push('/cart')
+      }, 1500)
+    },
     close: function () {
       this.$store.state.drawer2 = !this.$store.state.drawer2
     },

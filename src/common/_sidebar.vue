@@ -77,10 +77,6 @@ export default {
         icon: 'mdi-cart',
         title: '购物车',
         url: '/cart'
-      }, {
-        icon: 'mdi-settings',
-        title: '设置',
-        url: ''
       }
     ]
   }),

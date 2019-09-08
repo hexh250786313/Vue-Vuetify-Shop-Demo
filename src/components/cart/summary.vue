@@ -1,7 +1,7 @@
 <template>
   <div id="summary">
     <v-sheet class="background">
-      <v-row v-if="subtotal">
+      <v-row v-if="change">
         <v-col class="title">
           购物车
         </v-col>
@@ -23,6 +23,12 @@ export default {
   props: {
     subtotal: {
       type: Number,
+      default: function () {
+        return null
+      }
+    },
+    change: {
+      type: Object,
       default: function () {
         return null
       }
