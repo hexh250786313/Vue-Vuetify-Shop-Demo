@@ -19,7 +19,8 @@ const state = {
         }
       ]
     }
-  })()
+  })(),
+  selectedgoods: JSON.parse(sessionStorage.getItem('selectedgoods'))
 }
 
 const mutations = {
@@ -38,6 +39,28 @@ const mutations = {
     state.cartgoods.pop()
     const cg = state.cartgoods
     window.sessionStorage.setItem('cartgoods', JSON.stringify(cg))
+  },
+  [types.REMOVE_CARTGOODS] (state, res) {
+    state.cartgoods.splice(res, 1)
+    const cg = state.cartgoods
+    window.sessionStorage.setItem('cartgoods', JSON.stringify(cg))
+  },
+  [types.SET_SELECTEDGOODS] (state, res) {
+    state.selectedgoods = res
+    window.sessionStorage.setItem('selectedgoods', JSON.stringify(res))
+  },
+  [types.RESET_SELECTEDGOODS] (state) {
+    const cg = state.cartgoods
+    let a = []
+    for (var i = 0; i < cg.length; i++) {
+      a[i] = cg[i].id
+    }
+    let b = state.selectedgoods.concat()
+    // 取购物车和选中物品的交集，目的是为了去掉移除的物品
+    let bSet = new Set(b)
+    let c = Array.from(new Set(a.filter(v => bSet.has(v))))
+    window.sessionStorage.setItem('selectedgoods', JSON.stringify(c))
+    state.selectedgoods = JSON.parse(sessionStorage.getItem('selectedgoods'))
   }
 }
 

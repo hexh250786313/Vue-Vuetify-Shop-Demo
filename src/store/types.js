@@ -31,5 +31,14 @@ export const PUSH_CARTGOODS = 'PUSH_CARTGOODS'
 // 移除新的购物车项
 export const DELETE_CARTGOODS = 'DELETE_CARTGOODS'
 
+// 移除指定购物车项
+export const REMOVE_CARTGOODS = 'REMOVE_CARTGOODS'
+
+// selected 商品
+export const SET_SELECTEDGOODS = 'SET_SELECTEDGOODS'
+
+// reset selected
+export const RESET_SELECTEDGOODS = 'RESET_SELECTEDGOODS'
+
 // 全局loading状态，调用 axios 时会检测，比如会检测有没有上一次遗留的购物车讯息
 // export const SET_LOADING = 'SET_LOADING'

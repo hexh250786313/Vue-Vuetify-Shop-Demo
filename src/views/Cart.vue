@@ -9,6 +9,7 @@
         <v-list :cartgoods="cartgoods" />
       </v-container>
     </v-content>
+    <v-bottombar />
   </v-app>
 </template>
 
@@ -16,6 +17,7 @@
 import Topbar3 from '@/components/cart/topbar3'
 import Summary from '@/components/cart/summary'
 import List from '@/components/cart/list'
+import Bottombar from '@/components/cart/bottombar'
 import Sidebar from '@/common/_sidebar'
 
 export default {
@@ -23,7 +25,8 @@ export default {
     'v-topbar3': Topbar3,
     'v-sidebar': Sidebar,
     'v-summary': Summary,
-    'v-list': List
+    'v-list': List,
+    'v-bottombar': Bottombar
   },
   computed: {
     cartgoods: function () {
