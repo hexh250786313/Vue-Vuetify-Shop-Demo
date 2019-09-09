@@ -1,30 +1,26 @@
-# md-test
-Still coding...
+# 项目说明
 
-## Project setup
-```
+本项目是一个仿 Google Shop 的 Material Design 单页面前端线上商店。
+主要技术：Vue2.0 + Vuetify2.0 + Sass + Vuex + Vue Router + Mock + Axios
+
+## 简介
+
+1. 首页浏览功能。
+2. 登录功能，包括登录拦截、登录验证、登录跳转。
+3. 搜索栏搜索功能。
+4. 商品浏览页面，包括图片滚动、类型选择、添加到购物车。
+5. 购物车，包括移除商品、选择商品、商品数量控制、总额计算、结算功能。
+
+## 预览
+
+![](https://i1.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029791_s_4406619_o_w_375_h_667_50808.gif)    ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029798_s_4062881_o_w_375_h_667_21579.gif)    ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029803_s_2049045_o_w_375_h_667_39975.gif)
+
+## 安装
+
+``` bash
+# 安装依赖
 npm install
-```
 
-### Compiles and hot-reloads for development
+# 在 localhost:8080 进行热重载
+npm run dev
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
