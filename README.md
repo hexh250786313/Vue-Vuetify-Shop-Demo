@@ -1,7 +1,8 @@
 # 项目说明
 
-本项目是一个仿 Google Shop 的 Material Design 单页面前端线上商店。
-主要技术：Vue2.0 + Vuetify2.0 + Sass + Vuex + Vue Router + Mock + Axios
+本项目是一个仿 Google Shop 的 Material Design 单页面前端线上商店。  
+主要技术：Vue2.0 + Vuetify2.0 + Sass + Vuex + Vue Router + Mock + Axios  
+Vuetify2.0 框架不兼容 Edge 和 IE 浏览器，建议使用 Chrome 打开。  
 
 ## 简介
 
@@ -13,7 +14,14 @@
 
 ## 预览
 
-![](https://i1.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029791_s_4406619_o_w_375_h_667_50808.gif)    ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029798_s_4062881_o_w_375_h_667_21579.gif)    ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029803_s_2049045_o_w_375_h_667_39975.gif)
+1. 主要页面浏览 + 登录演示
+![](https://i1.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029791_s_4406619_o_w_375_h_667_50808.gif)
+
+2. 商品详细页 + 搜索演示
+![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029798_s_4062881_o_w_375_h_667_21579.gif)
+
+3. 购物车演示
+![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029803_s_2049045_o_w_375_h_667_39975.gif)
 
 ## 安装
 
