@@ -56,7 +56,7 @@ const mutations = {
     for (var i = 0; i < cg.length; i++) {
       a[i] = cg[i].id
     }
-    let b = state.selectedgoods.concat()
+    let b = state.selectedgoods
     // 取购物车和选中物品的交集，目的是为了去掉移除的物品
     let bSet = new Set(b)
     let c = Array.from(new Set(a.filter(v => bSet.has(v))))
@@ -64,8 +64,8 @@ const mutations = {
     state.selectedgoods = JSON.parse(sessionStorage.getItem('selectedgoods'))
   },
   [types.SET_SUM] (state) {
-    const a = state.selectedgoods.concat()
-    const b = state.cartgoods.concat()
+    const a = state.selectedgoods
+    const b = state.cartgoods
     let aSet = new Set(a)
     // 有 ! 则取未被选中的，无 ! 则取选中的
     let c = Array.from(new Set(b.filter(item => aSet.has(item.id))))
@@ -77,8 +77,8 @@ const mutations = {
     window.sessionStorage.setItem('sum', JSON.stringify(s))
   },
   [types.CHECKOUT] (state) {
-    const a = state.selectedgoods.concat()
-    const b = state.cartgoods.concat()
+    const a = state.selectedgoods
+    const b = state.cartgoods
     let aSet = new Set(a)
     // 有 ! 则取未被选中的，无 ! 则取选中的
     let c = Array.from(new Set(b.filter(item => !aSet.has(item.id))))

@@ -127,7 +127,7 @@ export default {
     loadPage (url) {
       this.$store.state.loading = true
       setTimeout(() => {
-        if (url === '') {
+        if (url === this.$route.path) {
           this.$store.state.drawer = false
           this.$store.state.loading = false
         } else {

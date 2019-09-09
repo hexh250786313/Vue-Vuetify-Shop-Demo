@@ -53,6 +53,7 @@
           v-for="item in filterList"
           :key="item.title"
           link
+          @click="toDetail(item.id)"
         >
           <v-list-item-icon>
             <v-icon>mdi-magnify</v-icon>
@@ -73,7 +74,6 @@ import { setTimeout } from 'timers'
 
 export default {
   data: () => ({
-    list: [],
     filterList: [],
     overlay: false,
     model: '',
@@ -81,42 +81,26 @@ export default {
     barIcon2: 'mdi-cart',
     iconLabel: 'mdi-google',
     textLabel: '要寻找什么商品？',
-    flag: true,
-    flag_2: true // 注释掉亦可
+    flag: true // 注释掉亦可
   }),
   computed: {
     cartcount: function () {
       return this.$store.state.cart.cartgoods.length
+    },
+    list: function () {
+      return this.$store.state.home.goods
     }
   },
   watch: {
     model: function (newValue) {
-      if (this.flag) {
-        // 请求拦截
-        this.$api({
-          method: 'post',
-          url: '/datas'
-        })
-        // 拦截完毕
-          .then(response => {
-            this.list = response.data.goods
-          })
-        // 处理错误
-          .catch(function (error) {
-            alert(error)
-          })
-        this.newValue = newValue
-        // 只在第一次输入内容的时候请求数据
-        this.flag = false
-      }
       setTimeout(() => { // 此处要用箭头函数，因为 setTimeout 的执行环境在 window 中，this 指向了 window
         // 把全部请求的数据打印一次，可注释掉这一段
-        if (this.flag_2) {
+        if (this.flag) {
           for (var i = 0; i < this.list.length; i++) {
             console.log(this.list[i].title)
           }
           console.log('——————分割线——————')
-          this.flag_2 = false
+          this.flag = false
         }
 
         // 匹配数据
@@ -130,6 +114,19 @@ export default {
     }
   },
   methods: {
+    toDetail (id) {
+      this.$store.state.loading = true
+      setTimeout(() => {
+        if (id === '') {
+          this.$store.state.drawer = false
+          this.$store.state.loading = false
+        } else {
+          this.$store.state.drawer = false
+          this.$store.state.loading = false
+          this.$router.push('/detail/' + id)
+        }
+      }, 1500)
+    },
     toCart () {
       this.overlay = false
       this.barIcon = 'mdi-menu'

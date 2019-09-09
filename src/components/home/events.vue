@@ -21,6 +21,7 @@
               large
               color="#1976D2"
               dark
+              @click="print"
             >
               马上购买
             </v-btn>
@@ -52,6 +53,11 @@ export default {
     },
     getImgUrl: function () {
       return require('@/assets/' + this.event.picUrl + '.png')
+    }
+  },
+  methods: {
+    print: function () {
+      console.log(this.$route.path)
     }
   }
 }

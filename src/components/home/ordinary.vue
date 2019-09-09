@@ -87,8 +87,8 @@ export default {
           this.$store.state.loading = false
         } else {
           this.$store.state.drawer = false
-          this.$router.push('/detail/' + id)
           this.$store.state.loading = false
+          this.$router.push('/detail/' + id)
         }
       }, 1500)
     }
