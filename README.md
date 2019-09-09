@@ -15,13 +15,13 @@
   
 ## 预览
 
-## 主要页面浏览 + 登录演示  
+### 主要页面浏览 + 登录演示  
 ![](https://i1.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029791_s_4406619_o_w_375_h_667_50808.gif)  
   
-## 商品详细页 + 搜索演示  
+### 商品详细页 + 搜索演示  
 ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029798_s_4062881_o_w_375_h_667_21579.gif)  
   
-## 购物车演示  
+### 购物车演示  
 ![](https://i2.hoopchina.com.cn/blogfile/201909/09/BbsImg_1568029803_s_2049045_o_w_375_h_667_39975.gif)  
   
 ## 安装
