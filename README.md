@@ -1,10 +1,8 @@
 # 项目说明
 
 本项目是一个仿 Google Shop 的 Material Design 单页面前端线上商店。  
-主要技术：Vue2.0 + Vuetify2.0 + Sass + Vuex + Vue Router + Mock + Axios  
+Vue2.0 + Vuetify2.0 + Sass + Vuex + Vue Router + Mock + Axios  
   
-注意：Vuetify2.0 框架不兼容 Edge 和 IE 浏览器，建议使用 Chrome 打开（Safari 未知）。  
-
 ## 简介
 
 1. 首页浏览功能。
@@ -26,10 +24,7 @@
   
 ### 安装
 
-``` bash
-# 安装依赖
+``` shell
 npm install
-
-# 在 localhost:8080 进行热重载
 npm run dev
 ```
